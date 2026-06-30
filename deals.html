@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deals - Fire Rocks CRM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <h2>Fire Rocks CRM</h2>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="customers.html">Customers</a>
+          <a href="contacts.html">Contacts</a>
+          <a href="deals.html" class="active">Deals</a>
+          <a href="reminders.html">Reminders</a>
+          <a href="users.html">Users</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h1>Deals</h1>
+            <p>Manage sales deals and opportunities</p>
+          </div>
+        </header>
+
+        <section class="page-section">
+          <h2>Add New Deal</h2>
+
+          <form id="dealForm" class="form-grid">
+            <div class="form-group">
+              <label>Customer</label>
+              <select id="customerId" required>
+                <option value="">Select customer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="title" required />
+            </div>
+
+            <div class="form-group">
+              <label>Value</label>
+              <input type="number" id="value" step="0.01" min="0" required />
+            </div>
+
+            <div class="form-group">
+              <label>Stage</label>
+              <select id="stage" required>
+                <option value="New">New</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Won">Won</option>
+                <option value="Lost">Lost</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Expected Close Date</label>
+              <input type="datetime-local" id="expectedCloseDate" />
+            </div>
+
+            <button type="submit">Add Deal</button>
+          </form>
+
+          <p id="message"></p>
+        </section>
+
+        <section class="page-section">
+          <div class="section-header">
+            <h2>Deals List</h2>
+            <button id="refreshBtn" class="small-btn">Refresh</button>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Customer Id</th>
+                  <th>Title</th>
+                  <th>Value</th>
+                  <th>Stage</th>
+                  <th>Expected Close Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dealsTableBody">
+                <tr>
+                  <td colspan="7">Loading deals...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/deals.js"></script>
+  </body>
+</html>

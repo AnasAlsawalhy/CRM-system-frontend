@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fire Rocks CRM Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <h2>Fire Rocks CRM</h2>
+
+        <nav>
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="customers.html">Customers</a>
+          <a href="contacts.html">Contacts</a>
+          <a href="deals.html">Deals</a>
+          <a href="reminders.html">Reminders</a>
+          <a href="users.html">Users</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h1>Dashboard</h1>
+            <p>Welcome back to your CRM system</p>
+          </div>
+          <button id="refreshBtn" class="icon-btn" title="Refresh">↻</button>
+        </header>
+
+        <section class="cards-grid">
+          <div class="dashboard-card">
+            <h3>Total Customers</h3>
+            <p id="totalCustomers">---</p>
+            <span>All registered customers</span>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Total Contacts</h3>
+            <p id="totalContacts">---</p>
+            <span>Customer contacts</span>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Total Deals</h3>
+            <p id="totalDeals">---</p>
+            <span>Sales opportunities</span>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Total Reminders</h3>
+            <p id="totalReminders">---</p>
+            <span>All follow-up reminders</span>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Pending Reminders</h3>
+            <p id="pendingReminders">---</p>
+            <span>Not completed yet</span>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Completed Reminders</h3>
+            <p id="completedReminders">---</p>
+            <span>Finished follow-ups</span>
+          </div>
+
+          <div class="dashboard-card">
+            <h3>Emails Sent</h3>
+            <p id="emailsSent">---</p>
+            <span>Reminder emails sent</span>
+          </div>
+        </section>
+
+        <section class="quick-actions">
+          <h2>Quick Actions</h2>
+
+          <div class="actions-grid">
+            <a href="customers.html">Manage Customers</a>
+            <a href="contacts.html">Manage Contacts</a>
+            <a href="deals.html">Manage Deals</a>
+            <a href="reminders.html">Manage Reminders</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

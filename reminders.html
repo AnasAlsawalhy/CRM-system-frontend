@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reminders - Fire Rocks CRM</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <h2>Fire Rocks CRM</h2>
+
+        <nav>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="customers.html">Customers</a>
+          <a href="contacts.html">Contacts</a>
+          <a href="deals.html">Deals</a>
+          <a href="reminders.html" class="active">Reminders</a>
+          <a href="users.html">Users</a>
+        </nav>
+
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <h1>Reminders</h1>
+            <p>Manage follow-up reminders and email notifications</p>
+          </div>
+        </header>
+
+        <section class="page-section">
+          <h2>Add New Reminder</h2>
+
+          <form id="reminderForm" class="form-grid">
+            <div class="form-group">
+              <label>Customer</label>
+              <select id="customerId" required>
+                <option value="">Select customer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Assigned User</label>
+              <select id="assignedToUserId" required>
+                <option value="">Select user</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Title</label>
+              <input type="text" id="title" required />
+            </div>
+
+            <div class="form-group">
+              <label>Note</label>
+              <input type="text" id="note" />
+            </div>
+
+            <div class="form-group">
+              <label>Reminder After Days</label>
+              <input
+                type="number"
+                id="reminderAfterDays"
+                value="0"
+                min="0"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Reminder Date</label>
+              <input type="datetime-local" id="reminderAtUtc" required />
+            </div>
+
+            <button type="submit">Add Reminder</button>
+          </form>
+
+          <p id="message"></p>
+        </section>
+
+        <section class="page-section">
+          <div class="section-header">
+            <h2>Reminders List</h2>
+            <button id="refreshBtn" class="small-btn">Refresh</button>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Customer Id</th>
+                  <th>User Id</th>
+                  <th>Title</th>
+                  <th>Reminder Date</th>
+                  <th>Email Sent</th>
+                  <th>Completed</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="remindersTableBody">
+                <tr>
+                  <td colspan="8">Loading reminders...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/reminders.js"></script>
+  </body>
+</html>
