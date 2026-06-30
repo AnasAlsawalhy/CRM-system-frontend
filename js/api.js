@@ -1,11 +1,17 @@
 // const API_BASE_URL = "https://localhost:7153/api";
+
 const API_BASE_URL =
   "https://relying-firewall-occurred-virtual.trycloudflare.com";
 
 async function apiRequest(endpoint, options = {}) {
   const token = localStorage.getItem("token");
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const fixedEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+  const url = `${API_BASE_URL}${fixedEndpoint}`;
+
+  console.log("API REQUEST:", url);
+
+  const response = await fetch(url, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -14,25 +20,33 @@ async function apiRequest(endpoint, options = {}) {
     },
   });
 
-  const responseText = await response.text();
-
-  console.log("API URL:", `${API_BASE_URL}${endpoint}`);
-  console.log("Status:", response.status);
-  console.log("Response:", responseText);
-
   if (!response.ok) {
-    throw new Error(
-      `Status ${response.status}: ${responseText || "Request failed"}`,
-    );
+    const errorText = await response.text();
+    console.error("API ERROR:", response.status, errorText);
+    throw new Error(errorText || "Request failed");
   }
 
-  if (!responseText) {
-    return null;
-  }
+  return response.json();
+}
 
-  try {
-    return JSON.parse(responseText);
-  } catch {
-    return responseText;
-  }
+const responseText = await response.text();
+
+console.log("API URL:", `${API_BASE_URL}${endpoint}`);
+console.log("Status:", response.status);
+console.log("Response:", responseText);
+
+if (!response.ok) {
+  throw new Error(
+    `Status ${response.status}: ${responseText || "Request failed"}`,
+  );
+}
+
+if (!responseText) {
+  return null;
+}
+
+try {
+  return JSON.parse(responseText);
+} catch {
+  return responseText;
 }

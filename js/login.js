@@ -11,7 +11,7 @@ loginForm.addEventListener("submit", async function (event) {
   const password = document.getElementById("password").value;
 
   try {
-    const result = await apiRequest("/Auth/login", {
+    const result = await apiRequest("/api/Auth/login", {
       method: "POST",
       body: JSON.stringify({
         email: email,
