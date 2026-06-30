@@ -32,7 +32,7 @@ customerForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    await apiRequest("/Customers", {
+    await apiRequest("/api/Customers", {
       method: "POST",
       body: JSON.stringify(customer),
     });
@@ -57,7 +57,7 @@ async function loadCustomers() {
       </tr>
     `;
 
-    const customers = await apiRequest("/Customers");
+    const customers = await apiRequest("/api/Customers");
 
     if (!customers || customers.length === 0) {
       customersTableBody.innerHTML = `
@@ -121,7 +121,7 @@ async function deleteCustomer(id) {
   }
 
   try {
-    await apiRequest(`/Customers/${id}`, {
+    await apiRequest(`/api/Customers/${id}`, {
       method: "DELETE",
     });
 

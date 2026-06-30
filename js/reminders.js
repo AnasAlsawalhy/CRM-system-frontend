@@ -60,7 +60,7 @@ reminderForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    await apiRequest("/FollowUpReminders", {
+    await apiRequest("/api/FollowUpReminders", {
       method: "POST",
       body: JSON.stringify(reminder),
     });
@@ -149,7 +149,7 @@ function syncDaysFromDate() {
 
 async function loadCustomersDropdown() {
   try {
-    const customers = await apiRequest("/Customers");
+    const customers = await apiRequest("/api/Customers");
 
     customerSelect.innerHTML = `<option value="">Select customer</option>`;
 
@@ -172,7 +172,7 @@ async function loadCustomersDropdown() {
 
 async function loadUsersDropdown() {
   try {
-    const users = await apiRequest("/Users");
+    const users = await apiRequest("/api/Users");
 
     assignedUserSelect.innerHTML = `<option value="">Select user</option>`;
 
@@ -211,7 +211,7 @@ async function loadReminders() {
       </tr>
     `;
 
-    const reminders = await apiRequest("/FollowUpReminders");
+    const reminders = await apiRequest("/api/FollowUpReminders");
 
     if (!reminders || reminders.length === 0) {
       remindersTableBody.innerHTML = `
@@ -290,7 +290,7 @@ async function deleteReminder(id) {
   }
 
   try {
-    await apiRequest(`/FollowUpReminders/${id}`, {
+    await apiRequest(`/api/FollowUpReminders/${id}`, {
       method: "DELETE",
     });
 
@@ -303,7 +303,7 @@ async function deleteReminder(id) {
 
 async function markReminderCompleted(id) {
   try {
-    const reminder = await apiRequest(`/FollowUpReminders/${id}`);
+    const reminder = await apiRequest(`/api/FollowUpReminders/${id}`);
 
     const updatedReminder = {
       ...reminder,
@@ -311,7 +311,7 @@ async function markReminderCompleted(id) {
       IsCompleted: true,
     };
 
-    await apiRequest(`/FollowUpReminders/${id}`, {
+    await apiRequest(`/api/FollowUpReminders/${id}`, {
       method: "PUT",
       body: JSON.stringify(updatedReminder),
     });

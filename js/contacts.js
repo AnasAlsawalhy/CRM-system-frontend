@@ -33,7 +33,7 @@ contactForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    await apiRequest("/Contacts", {
+    await apiRequest("/api/Contacts", {
       method: "POST",
       body: JSON.stringify(contact),
     });
@@ -52,7 +52,7 @@ contactForm.addEventListener("submit", async function (event) {
 
 async function loadCustomersDropdown() {
   try {
-    const customers = await apiRequest("/Customers");
+    const customers = await apiRequest("/api/Customers");
 
     customerSelect.innerHTML = `<option value="">Select customer</option>`;
 
@@ -81,7 +81,7 @@ async function loadContacts() {
       </tr>
     `;
 
-    const contacts = await apiRequest("/Contacts");
+    const contacts = await apiRequest("/api/Contacts");
 
     if (!contacts || contacts.length === 0) {
       contactsTableBody.innerHTML = `
@@ -151,7 +151,7 @@ async function deleteContact(id) {
   }
 
   try {
-    await apiRequest(`/Contacts/${id}`, {
+    await apiRequest(`/api/Contacts/${id}`, {
       method: "DELETE",
     });
 

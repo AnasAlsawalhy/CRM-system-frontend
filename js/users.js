@@ -89,7 +89,7 @@ userForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    await apiRequest("/Users", {
+    await apiRequest("/api/Users", {
       method: "POST",
       body: JSON.stringify(user),
     });
@@ -114,7 +114,7 @@ async function loadUsers() {
       </tr>
     `;
 
-    const users = await apiRequest("/Users");
+    const users = await apiRequest("/api/Users");
 
     if (!users || users.length === 0) {
       usersTableBody.innerHTML = `
@@ -174,7 +174,7 @@ async function deleteUser(id) {
   }
 
   try {
-    await apiRequest(`/Users/${id}`, {
+    await apiRequest(`/api/Users/${id}`, {
       method: "DELETE",
     });
 

@@ -36,7 +36,7 @@ dealForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    await apiRequest("/Deals", {
+    await apiRequest("/api/Deals", {
       method: "POST",
       body: JSON.stringify(deal),
     });
@@ -55,7 +55,7 @@ dealForm.addEventListener("submit", async function (event) {
 
 async function loadCustomersDropdown() {
   try {
-    const customers = await apiRequest("/Customers");
+    const customers = await apiRequest("/api/Customers");
 
     customerSelect.innerHTML = `<option value="">Select customer</option>`;
 
@@ -84,7 +84,7 @@ async function loadDeals() {
       </tr>
     `;
 
-    const deals = await apiRequest("/Deals");
+    const deals = await apiRequest("/api/Deals");
 
     if (!deals || deals.length === 0) {
       dealsTableBody.innerHTML = `
@@ -149,7 +149,7 @@ async function deleteDeal(id) {
   }
 
   try {
-    await apiRequest(`/Deals/${id}`, {
+    await apiRequest(`/api/Deals/${id}`, {
       method: "DELETE",
     });
 

@@ -20,7 +20,7 @@ async function loadDashboardSummary() {
   try {
     console.log("Loading dashboard summary...");
 
-    const summary = await apiRequest("/Dashboard/summary");
+    const summary = await apiRequest("/api/Dashboard/summary");
 
     console.log("Dashboard summary:", summary);
 
