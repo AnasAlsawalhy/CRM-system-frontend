@@ -1,9 +1,9 @@
 // const API_BASE_URL = "https://localhost:7153/api";
 
 const API_BASE_URL =
-  " https://habitat-alphabetical-elephant-compression.trycloudflare.com";
+  "https://habitat-alphabetical-elephant-compression.trycloudflare.com";
 
-async function apiRequest(endpoint, options = {}) {
+window.apiRequest = async function (endpoint, options = {}) {
   const token = localStorage.getItem("token");
 
   const fixedEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
@@ -20,33 +20,24 @@ async function apiRequest(endpoint, options = {}) {
     },
   });
 
+  const responseText = await response.text();
+
+  console.log("Status:", response.status);
+  console.log("Response:", responseText);
+
   if (!response.ok) {
-    const errorText = await response.text();
-    console.error("API ERROR:", response.status, errorText);
-    throw new Error(errorText || "Request failed");
+    throw new Error(
+      `Status ${response.status}: ${responseText || "Request failed"}`,
+    );
   }
 
-  return response.json();
-}
+  if (!responseText) {
+    return null;
+  }
 
-const responseText = await response.text();
-
-console.log("API URL:", `${API_BASE_URL}${endpoint}`);
-console.log("Status:", response.status);
-console.log("Response:", responseText);
-
-if (!response.ok) {
-  throw new Error(
-    `Status ${response.status}: ${responseText || "Request failed"}`,
-  );
-}
-
-if (!responseText) {
-  return null;
-}
-
-try {
-  return JSON.parse(responseText);
-} catch {
-  return responseText;
-}
+  try {
+    return JSON.parse(responseText);
+  } catch {
+    return responseText;
+  }
+};
